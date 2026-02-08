@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Price Prediction</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background: #f8f9fa;
+            /* Light gray background */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+
+        .container {
+            margin-top: 50px;
+            max-width: 800px;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #0d6efd;
+            /* Bootstrap Primary Blue */
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .card {
+            border: none;
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #555;
+        }
+
+        .btn-primary {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background-color: #0b5ed7;
+            border-color: #0a58ca;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(13, 110, 253, 0.3);
+        }
+
+        /* Glassmorphism subtle touch if desired, or keep clean material design */
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>✈️ Flight Fare Predictor</h1>
+        <form action="\predict" method="post">
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="Dep_Time" class="form-label">Departure Date & Time</label>
+                    <input type="datetime-local" name="Dep_Time" id="Dep_Time" class="form-control" required="required">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="Arrival_Time" class="form-label">Arrival Date & Time</label>
+                    <input type="datetime-local" name="Arrival_Time" id="Arrival_Time" class="form-control"
+                        required="required">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="Source" class="form-label">Source</label>
+                    <select name="Source" id="Source" class="form-select" required="required">
+                        <option value="Delhi">Delhi</option>
+                        <option value="Kolkata">Kolkata</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Chennai">Chennai</option>
+                        <option value="Bangalore">Bangalore</option>
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="Destination" class="form-label">Destination</label>
+                    <select name="Destination" id="Destination" class="form-select" required="required">
+                        <option value="Cochin">Cochin</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="New Delhi">New Delhi</option>
+                        <option value="Hyderabad">Hyderabad</option>
+                        <option value="Kolkata">Kolkata</option>
+                        <option value="Bangalore">Bangalore</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="stops" class="form-label">Total Stops</label>
+                    <select name="stops" class="form-select" required="required">
+                        <option value="0">Non-Stop</option>
+                        <option value="1">1 Stop</option>
+                        <option value="2">2 Stops</option>
+                        <option value="3">3 Stops</option>
+                        <option value="4">4 Stops</option>
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="airline" class="form-label">Which Airline?</label>
+                    <select name="airline" id="airline" class="form-select" required="required">
+                        <option value="Jet Airways">Jet Airways</option>
+                        <option value="IndiGo">IndiGo</option>
+                        <option value="Air India">Air India</option>
+                        <option value="Multiple carriers">Multiple carriers</option>
+                        <option value="SpiceJet">SpiceJet</option>
+                        <option value="Vistara">Vistara</option>
+                        <option value="Air Asia">Air Asia</option>
+                        <option value="GoAir">GoAir</option>
+                        <option value="Multiple carriers Premium economy">Multiple carriers Premium economy</option>
+                        <option value="Jet Airways Business">Jet Airways Business</option>
+                        <option value="Vistara Premium economy">Vistara Premium economy</option>
+                        <option value="Trujet">Trujet</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary">Predict Price</button>
+            </div>
+        </form>
+
+        <div class="text-center mt-3 text-muted">
+            <small>Built with ❤️ using Flask & Machine Learning</small>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
