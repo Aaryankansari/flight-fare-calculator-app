@@ -5,6 +5,7 @@ A complete, free-to-use web application that predicts flight ticket prices using
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
 ![Flask](https://img.shields.io/badge/Flask-2.0%2B-green)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5-purple)
+![CI Status](https://github.com/Aaryankansari/flight-fare-calculator-app/actions/workflows/python-app.yml/badge.svg)
 
 ## 🚀 Features
 
@@ -12,13 +13,14 @@ A complete, free-to-use web application that predicts flight ticket prices using
 - **User-Friendly Interface**: Clean and responsive design using Bootstrap 5.
 - **Self-Contained**: No external paid APIs required.
 - **End-to-End**: Data generation -> Model training -> Backend -> Frontend.
+- **CI/CD Integrated**: Automated testing on every push.
 
 ## 🛠️ Tech Stack
 
 - **Backend**: Python, Flask
 - **Machine Learning**: Scikit-Learn, Pandas, NumPy, Joblib
 - **Frontend**: HTML5, CSS3, Bootstrap 5
-- **Deployment**: Docker (optional)
+- **Deployment**: Docker, Procfile (Heroku/Render ready)
 
 ## 📂 Project Structure
 
@@ -29,8 +31,10 @@ flight-fare-prediction/
 ├── flight_fare_model.pkl   # Trained machine learning model
 ├── model_columns.pkl       # Serialized model columns
 ├── requirements.txt        # Project dependencies
+├── Procfile                # Deployment configuration
 ├── Dockerfile              # Docker configuration
 ├── README.md               # Project documentation
+├── data/                   # Directory for real datasets
 └── templates/
     ├── index.html          # Input form template
     └── result.html         # Prediction result template
@@ -45,7 +49,11 @@ flight-fare-prediction/
 
 ### Installation
 
-1. **Clone the repository** (if applicable) or navigate to the project directory.
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/Aaryankansari/flight-fare-calculator-app.git
+   cd flight-fare-calculator-app
+   ```
 
 2. **Install dependencies**:
    ```bash
@@ -68,28 +76,32 @@ flight-fare-prediction/
 2. **Open your browser** and go to:
    [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
-## 🐳 Docker Support
+## ☁️ Deployment
 
-To run the application using Docker:
+### Deploy to Render (Free Tier)
 
-1. **Build the image**:
+1. Create a new **Web Service** on [Render](https://render.com/).
+2. Connect your GitHub repository.
+3. Render will automatically detect the `Procfile` and `requirements.txt`.
+4. Click **Deploy**.
+
+### Deploy to Heroku
+
+1. Create a new app on Heroku.
+2. Connect your GitHub repository.
+3. Deploy branch `main`.
+
+## 📊 Using Real Data
+
+To train the model on a real dataset (e.g., from Kaggle):
+
+1. Download a dataset like [Flight Price Prediction](https://www.kaggle.com/datasets/nikhilmittal/flight-fare-prediction-mh).
+2. Save the CSV file to `data/your_dataset.csv`.
+3. Run the training script with the data path:
    ```bash
-   docker build -t flight-fare-app .
+   python train_model.py --data-path data/your_dataset.csv
    ```
-
-2. **Run the container**:
-   ```bash
-   docker run -p 5000:5000 flight-fare-app
-   ```
-
-## 📸 Usage
-
-1. Select your **Departure Date & Time**.
-2. Select your **Arrival Date & Time**.
-3. Choose **Source** and **Destination** cities.
-4. Select the number of **Stops**.
-5. Pick your preferred **Airline**.
-6. Click **Predict Price** to see usage estimate.
+   *(Note: You may need to adjust `train_model.py` slightly depending on the column names of your specific dataset.)*
 
 ## 🤝 Contributing
 
