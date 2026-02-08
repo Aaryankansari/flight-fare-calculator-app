@@ -1,5 +1,7 @@
 import pandas as pd
 import numpy as np
+import argparse
+import sys
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import LabelEncoder
@@ -118,5 +120,28 @@ def train_model():
     joblib.dump(feature_columns, 'model_columns.pkl')
     print("Model trained and saved successfully!")
 
+    print("Model trained and saved successfully!")
+
 if __name__ == "__main__":
-    train_model()
+    parser = argparse.ArgumentParser(description='Train Flight Fare Prediction Model')
+    parser.add_argument('--test-run', action='store_true', help='Run in test mode (fewer samples)')
+    parser.add_argument('--data-path', type=str, help='Path to real CSV dataset')
+    
+    args = parser.parse_args()
+    
+    if args.data_path:
+        print(f"Loading data from {args.data_path}...")
+        try:
+            # Here we would add specific logic to load real data
+            # For this demo, we'll just print a message and exit or fallback
+            print("Real data loading logic would go here. Falling back to synthetic for now.")
+            train_model()
+        except Exception as e:
+            print(f"Error loading data: {e}")
+            sys.exit(1)
+    elif args.test_run:
+        print("Running in TEST MODE (Data generation only, no save)...")
+        _ = generate_synthetic_data(num_samples=100)
+        print("Test run complete.")
+    else:
+        train_model()
